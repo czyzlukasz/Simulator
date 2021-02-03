@@ -1,0 +1,3 @@
+[submodule "Src/Math"]
+	path = Src/Math
+	url = https://github.com/krawacik3/math3dcpp
