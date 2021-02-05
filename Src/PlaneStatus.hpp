@@ -2,7 +2,10 @@
 #define PLANESTATUS_HPP
 
 #include <Configuration.hpp>
-
+#include <variant>
+#include <map>
+#include <cstdint>
+#include <string>
 
 struct PlaneStatus {
     PlaneStatus();
@@ -10,6 +13,8 @@ struct PlaneStatus {
     Vector3d position;
     Vector3d speed;
     Quaterniond rotation;
+
+    std::map<std::string, std::variant<float, uint32_t>> parameters;
 };
 
 
