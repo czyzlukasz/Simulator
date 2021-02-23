@@ -20,7 +20,7 @@ struct PlaneAirfoil : public PlaneItem{
 
 protected:
     const double area;
-    const Quaterniond airfoilDirection;
+    mutable Quaterniond airfoilDirection;
     static constexpr double airDensity = 1.225;
 };
 

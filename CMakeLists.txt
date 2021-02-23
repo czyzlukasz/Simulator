@@ -12,7 +12,7 @@ add_executable(Simulator
         Src/PlaneStatus.cpp
         Src/Simulator.cpp
         Src/PlaneItems/PlaneEngine.cpp
-        Src/PlaneItems/PlaneAirfoil.cpp)
+        Src/PlaneItems/PlaneAirfoil.cpp Src/PlaneItems/PlaneAileron.cpp Src/PlaneItems/PlaneAileron.hpp)
 add_subdirectory(Src/Math)
 target_link_libraries(Simulator math3dcpp)
 

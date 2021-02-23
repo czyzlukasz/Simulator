@@ -85,6 +85,8 @@ double PlaneAirfoil::calculateLiftCoefficient(double aoa) {
         }
     }
 
+    // Beyond that, approximate lift with sine wave
+    const double amplitude = 1.5;
     return 0.;
 }
 
