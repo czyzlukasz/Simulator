@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick3D 1.15
 
 Node {
-    id: wing_v1_obj
+    id: aileron_obj
 
     Model {
         id: body1

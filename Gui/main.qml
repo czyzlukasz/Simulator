@@ -1,135 +1,105 @@
-import QtQuick 2.12
-import Gui 1.0
+import QtQuick 2.15
+import QtQuick.Window 2.15
 import QtCharts 2.3
-import QtQuick.Layouts 1.11
 import QtQuick.Controls 2.15
+import QtQuick.Dialogs.qml 1.0
+import QtQuick.Extras 1.4
+import QtQuick.Layouts 1.11
+import QtQuick3D 1.15
 
-Rectangle {
-    width: Constants.width
-    height: Constants.height
-
-    color: Constants.backgroundColor
+Window {
+    width: 1280
+    height: 720
+    visible: true
+    color: "#2f2f2f"
+    title: qsTr("Hello World")
 
     GridLayout {
         id: gridLayout
         anchors.fill: parent
-        rows: 3
-        columns: 2
-
-        GroupBox {
-            id: groupBox1
-            width: 200
-            height: 200
-            Layout.fillHeight: true
-            Layout.rowSpan: 2
-            title: qsTr("")
-
-            ColumnLayout {
-                id: columnLayout
-                anchors.fill: parent
-
-                Switch {
-                    id: switch1
-                    text: qsTr("Switch")
-                }
-
-                Switch {
-                    id: switch2
-                    text: qsTr("Switch")
-                }
-
-                Switch {
-                    id: switch3
-                    text: qsTr("Switch")
-                }
-            }
-
-        }
-
-        TabBar {
-            id: tabBar
-            height: 46
-            anchors.left: stackLayout.left
-            anchors.right: stackLayout.right
-            anchors.bottom: stackLayout.top
-            clip: false
-            Layout.fillHeight: false
-            wheelEnabled: false
-            currentIndex: 0
-            contentHeight: 38
-            Layout.fillWidth: true
-            TabButton {
-                text: "Overview"
-            }
-
-            TabButton {
-                text: "Parameters"
-            }
-
-            TabButton {
-                text: "Simulation"
-            }
-
-            TabButton {
-                text: "Log"
-            }
-        }
-
-        StackLayout {
-            id: stackLayout
-            width: 100
-            height: 100
-            currentIndex: 2
-            Layout.fillHeight: true
-
-            Item {
-            }
-
-            Item {
-            }
-
-            Item {
-                SimulationItem {
-                    id: simulationItem
-                    x: 0
-                    y: 0
-                    anchors.fill: parent
-                }
-            }
-
-            Item {
-            }
-        }
+        rows: 4
+        columns: 4
 
         GroupBox {
             id: groupBox
             width: 200
             height: 200
-            Layout.columnSpan: 2
-            Layout.fillHeight: false
+            Layout.minimumWidth: 200
+            Layout.fillHeight: true
+            Layout.rowSpan: 3
+            title: qsTr("")
+
+            GridLayout {
+                id: gridLayout1
+                anchors.fill: parent
+            }
+        }
+
+        TabBar {
+            id: tabBar
+            anchors.left: stackLayout.left
+            anchors.right: stackLayout.right
+            anchors.bottom: stackLayout.top
+            Layout.columnSpan: 3
+
+            TabButton {
+                text: "Tab 0"
+            }
+
+            TabButton {
+                text: "Tab 1"
+            }
+
+            TabButton {
+                text: "Simulation"
+            }
+        }
+
+
+        StackLayout {
+            id: stackLayout
+            width: 100
+            height: 100
+            Layout.rowSpan: 2
+            currentIndex: tabBar.currentIndex
             Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.columnSpan: 3
+
+            Item {
+            }
+
+            Item {
+            }
+
+            Item {
+                SimulatorItem {
+                    id: simulatorItem
+                }
+            }
+        }
+
+        GroupBox {
+            id: groupBox1
+            width: 200
+            height: 200
+            Layout.maximumHeight: 65535
+            Layout.minimumHeight: 0
+            Layout.fillWidth: true
+            Layout.columnSpan: 4
             title: qsTr("")
 
             RowLayout {
                 id: rowLayout
                 anchors.fill: parent
 
-                Pane {
-                    id: pane
-                    width: 200
-                    height: 200
-                    Layout.minimumHeight: 200
-                    Layout.minimumWidth: 200
-                }
 
                 ChartView {
                     id: line
                     width: 300
-                    height: 200
+                    height: 300
                     Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    localizeNumbers: false
-                    Layout.minimumWidth: 0
+                    Layout.minimumHeight: 200
                     Layout.maximumHeight: 200
                     LineSeries {
                         name: "LineSeries"
@@ -156,36 +126,41 @@ Rectangle {
                 }
 
                 ChartView {
-                    id: spline
+                    id: line1
                     width: 300
                     height: 300
                     Layout.fillWidth: true
-                    transformOrigin: Item.Center
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    Layout.minimumWidth: 0
+                    Layout.minimumHeight: 200
                     Layout.maximumHeight: 200
-                    SplineSeries {
-                        name: "SplineSeries"
+                    LineSeries {
+                        name: "LineSeries"
                         XYPoint {
                             x: 0
-                            y: 1
+                            y: 2
                         }
 
                         XYPoint {
-                            x: 3
-                            y: 4.3
+                            x: 1
+                            y: 1.2
+                        }
+
+                        XYPoint {
+                            x: 2
+                            y: 3.3
                         }
 
                         XYPoint {
                             x: 5
-                            y: 3.1
-                        }
-
-                        XYPoint {
-                            x: 8
-                            y: 5.8
+                            y: 2.1
                         }
                     }
+                }
+
+                Rectangle {
+                    id: rectangle
+                    width: 200
+                    height: 200
+                    color: "#ffffff"
                 }
 
                 ChartView {
@@ -193,8 +168,8 @@ Rectangle {
                     width: 300
                     height: 300
                     Layout.fillWidth: true
+                    Layout.minimumHeight: 200
                     Layout.maximumHeight: 200
-                    Layout.minimumWidth: 0
                     PercentBarSeries {
                         name: "PercentBarSeries"
                         BarSet {
@@ -216,11 +191,14 @@ Rectangle {
             }
         }
 
+
+
     }
+
 }
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}
+    D{i:0;formeditorZoom:0.75;height:720;width:1280}
 }
 ##^##*/

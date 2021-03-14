@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>SimulatorItem.qml</file>
+        <file>asset_imports/Quick3DAssets/Wing/Wing.qml</file>
+        <file>asset_imports/Quick3DAssets/Aileron/Aileron.qml</file>
+        <file>asset_imports/Quick3DAssets/Aileron/meshes/body1.mesh</file>
+        <file>asset_imports/Quick3DAssets/Wing/meshes/body1.mesh</file>
+    </qresource>
+</RCC>
